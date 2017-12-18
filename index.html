@@ -1,0 +1,340 @@
+<!-- browser-sync start --server . --files . -->
+
+<!DOCTYPE html>
+<html ng-app="angularApp" ng-controller="theInfoBase">
+<head>
+	<title>Wang Chen</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	
+	<!-- Google font-->
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic|Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- d3 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.0/d3.min.js"></script>
+	<!-- jQuery -->
+	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- angular -->
+	<script src="js/angular.min.js"></script>
+  	<script src="js/angularMainComplete.js"></script>
+  	<script src="js/angular-sanitize.js"></script>
+
+  	<script src="js/main.js"></script>
+  	<script src="js/timeline.js"></script>
+
+  	<!-- CSS --> 
+
+	<link href='css/mycss.css' type='text/css' rel='stylesheet'/>
+	<!-- Your own code-->
+	
+
+</head>
+<body onload="startTimer()">
+	<div id="bg">
+		<div style="height: 100%; background:rgba(0,0,0,0.7);">
+			<div id="contentPage">
+				<div ng-include="'globalNavArea'"></div>
+				<!-- homepage -->
+				<div ng-if="pageType==='home'" ng-include="'timelineHeader'"></div>
+				<div ng-if="pageType==='home'">
+					<div class="row">
+						<div ng-repeat="item in items">
+							<div class="column">
+								<div ng-if="item==='projects'" ng-include="'projectsArea'"></div>
+								<div ng-if="item==='reviews'" ng-include="'reviewsArea'"></div>
+							</div>
+						</div>
+						<div class="column1">
+							<div ng-include="'orderArea'" id="orderarea"></div>
+						</div>
+						<div class="column1">
+							<div ng-include="'contactArea'" id="contactarea"></div>
+						</div>
+
+					</div>
+				</div>
+				<!-- projectpage -->
+				<div ng-if="pageType==='project'" ng-include="'projectsPage'"></div>
+				<!-- projectpage -->
+				<div ng-if="pageType==='review'" ng-include="'reviewsPage'"></div>
+				<!-- projectpage -->
+				<div ng-if="pageType==='order'" ng-include="'orderPage'"></div>
+				<!-- projectpage -->
+				<div ng-if="pageType==='contact'" ng-include="'contactPage'"></div>
+			</div>
+		</div>
+		
+	</div>
+
+
+
+
+	<script src="json/projects.json"></script>
+	<script src="json/reviews.json"></script>
+
+	<!-- Scripts -->
+	<script type="text/ng-template" id="globalNavArea">
+	    <nav class="navbar navbar-inverse navbar-fixed-top">
+	        <!--container-fluid class adds a little padding, but doesn't constrain width-->
+	        <div class="container-fluid">
+	            <!--navbar header, which includes hamburger menu button and branding-->
+	            <div class="navbar-header">
+	                <!--hamburger menu button, shown only on narrow screens.
+	                `data-target` specifies a selector for the element containing the
+	                navigation links you want to hide/show when the button is clicked.
+	                `data-toggle` tells Bootstrap to toggle the `collapse` state,
+	                thereby hiding/showing the element selected by `data-target`.
+	                in this case, the selector is #site-nav-links, which selects
+	                the element with id="site-nav-links" (just like CSS selectors)
+	                -->
+	                <button type="button" 
+	                    class="navbar-toggle collapsed" 
+	                    data-target="#site-nav-links" 
+	                    data-toggle="collapse"  
+	                    aria-expanded="false">
+
+	                    <!--the hamburger icon itself, which Bootstrap creates
+	                    by stacking three bar icons on top of each other
+	                    the `sr-only` element is for screen readers-->
+	                    <span class="sr-only">toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                </button>
+	                <!--branding content, which always remains visible-->
+	                <a class="navbar-brand" href="#" ng-class="{active: pageType=='home'}"
+	                	ng-click="setCurrentPageType('home'); drawTimelineHeader(); setCurrentProjectType('all'); setCurrentReviewType('all')">
+	                    <i class="fa fa-home"></i> Home
+	                </a>
+	            </div>
+
+	            <!--navigation links, which are always visible on wide sceens,
+	            but go into a drop-down menu on narrow screens-->
+	            <div class="collapse navbar-collapse" id="site-nav-links">
+	                <!--the `navbar-right` class makes the links right-aligned on desktop-->
+	                <ul class="nav navbar-nav navbar-right">
+	                    <li ng-class="{active: pageType=='project'}"><a href="#projects"
+	                    ng-click="setCurrentPageType('project')">Projects</a></li>
+
+	                    <li ng-class="{active: pageType=='review'}"><a href="#reactions"
+	                    ng-click="setCurrentPageType('review')">Reactions</a></li>
+
+	                    <li ng-class="{active: pageType=='order'}"><a href="#order"
+	                    ng-click="setCurrentPageType('order')">Order</a></li>
+
+	                    <li ng-class="{active: pageType=='contact'}"><a href="#contact"
+	                    ng-click="setCurrentPageType('contact')">Contact</a></li>
+	                </ul>
+	            </div>
+	        
+	        </div> <!--end of .container-fluid-->
+	    </nav>
+  	</script>
+
+  	<script type="text/ng-template" id="timelineHeader">
+  		<header class="jumbotron" id="banner">
+	  		<div style="height: 500px; background:rgba(255,255,255,0.5); top:0px;">
+	  			<div class="infoContainer">
+		            <h3>Wang Chen</h3>
+		            <hr style="border-top: dashed 1px;">
+		            <div style="position: relative; bottom: 5px">
+		            	<img id="profile" src="img/profile2.jpeg">
+		            	<p id="desc">Currently I'm pursing Data Science Master degree at University of Washington. I worked as Data Engineer, Data Analyst with E&Y and Amazon Lab126.</p>
+		            </div>
+		            <div style="position:relative; bottom: 1px">
+		            	<h5 id="quote">"Quiting Wrinkles the Soul"</h5>
+		            </div>
+		            <!-- <p><a class="btn btn-primary btn-lg" href="#" id="button">Learn more</a></p> -->
+		        </div>
+		        <div id="eventContainer"></div>
+		        <div id="timelineContainer"></div>
+	  		</div>
+	        
+	    </header>
+  	</script>
+
+  	<script type="text/ng-template" id="projectsArea">
+  		<div class="dropdown" style="padding: 10px; background-color: rgba(255,223,0,0.5);">
+		  <span class="dropdown-toggle" style="font-size:30px;cursor:pointer" data-toggle="dropdown">&#9776; Projects</span>
+		  <ul class="dropdown-menu">
+		  	<li><a href="#" ng-click="setCurrentProjectType('all')">All</a></li>
+		    <li><a href="#" ng-click="setCurrentProjectType('Data Engineer')">Data Engineer</a></li>
+		    <li><a href="#" ng-click="setCurrentProjectType('Data Science')">Data Science</a></li>
+		    <li><a href="#" ng-click="setCurrentProjectType('Mobile Development')">Mobile Development</a></li>
+		    <li><a href="#" ng-click="setCurrentProjectType('Visualization')">Visualization</a></li>
+		  </ul>
+		</div>
+  		<div class="scrollable">
+  			<div ng-repeat="project in projects" ng-show="project.projectType===currentProjectType || currentProjectType==='all'">
+			    <div class="card" 
+			    	ng-click="setCurrentPageAndProjectID('project',project.projectId);">
+			    	<div class="imgContainer" style="background-image: url({{project.projectImg}})">
+			    		<!-- <img src="{{project.projectImg}}"> -->
+			    	</div>
+		  			<div class="textContainer">
+		  				<h4><b>{{project.projectName}}</b></h4>
+		  				<p><b>[{{project.projectSkills}}]</b></p>
+		  				<hr style="border-top: dashed 1px; margin: 2px">
+		  				<p>{{project.projectDesc}}</p>
+		  			</div>
+		  		</div>	
+			</div>
+  		</div>
+  	</script>
+
+  	<script type="text/ng-template" id="reviewsArea">
+  		<div class="dropdown" style="padding: 10px; background-color: rgba(223,255,0,0.5);">
+		  <span class="dropdown-toggle" style="font-size:30px;cursor:pointer" data-toggle="dropdown">&#9776; Reviews</span>
+		  <ul class="dropdown-menu">
+		  	<li><a href="#" ng-click="setCurrentReviewType('all')">All</a></li>
+		    <li><a href="#" ng-click="setCurrentReviewType('Movie')">Movie Reviews</a></li>
+		    <li><a href="#" ng-click="setCurrentReviewType('TV Series')">TV Series Reviews</a></li>
+		    <li><a href="#" ng-click="setCurrentReviewType('Music')">Music Reviews</a></li>
+		    <li><a href="#" ng-click="setCurrentReviewType('Product')">Product Reviews</a></li>
+		  </ul>
+		</div>
+  		<div class="scrollable">
+  			<div ng-repeat="review in reviews" ng-show="review.reviewType===currentReviewType || currentReviewType==='all'">
+			    <div class="card" ng-click="setCurrentPageAndReviewID('review',review.reviewId)">
+			    	<div class="imgContainer" style="background-image: url({{review.reviewImg}})">
+			    		<!-- <img src="{{project.projectImg}}"> -->
+			    	</div>
+		  			<div class="textContainer">
+		  				<h4><b>{{review.reviewName}}</b></h4>
+		  				<p>{{review.reviewDate}}</p>
+		  				<hr style="border-top: dashed 1px; margin: 2px">
+		  				<p>{{review.reviewTitle}}</p>
+		  			</div>
+		  		</div>	
+			</div>
+  		</div>
+  	</script>
+
+  	<script type="text/ng-template" id="orderArea">
+  	    <div style="padding: 10px; background-color: rgba(50,100,223,0.3);">
+  	    	<span class="dropdown-toggle" style="font-size:30px;cursor:pointer" data-toggle="dropdown"">&#9776; Order</span>
+  	    </div>
+  	    <div style="height:337.5px; background-image: url('img/road.jpeg'); padding: 10px">
+  	    	<div style="height:317.5px; background:rgba(0,0,0,0.5);">
+  	    		
+  	    	</div>
+  	    </div>
+  		
+  	</script>
+
+  	<script type="text/ng-template" id="contactArea">
+  		<div style="padding: 10px; background-color: rgba(223,99,99,0.5);">
+  	    	<span class="dropdown-toggle" style="font-size:30px;cursor:pointer" data-toggle="dropdown"">&#9776; Contact</span>
+  	    </div>
+  	    <div style="height:290px; background-image: url('img/File_000 (1).jpeg'); padding: 10px">
+  	    	<div style="height:270px; background:rgba(0,0,0,0.5);">
+  	    		
+  	    	</div>
+  	    </div>
+  	</script>
+
+  	<script type="text/ng-template" id="projectsPage">
+  		<div class="bannerPic">
+  			<div class="picShadow">
+  				<div id="pageTitle" style="background-color: rgba(252,238,132,0.9);">
+  					<br></br>
+  					<br>
+  					<h1 style="font-size:44px; padding-left:15px; color: rgb(246,181,10);">Projects</h1>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="picNav">
+  			<div ng-repeat="type in projectTypes">
+  				<div class="navRow">
+  					<div class="titleBox" style="background-color: rgb(246,181,10);">{{type}}</div>
+  					<div ng-repeat="project in projects" ng-show="project.projectType===type">
+  						<div class="itemBox" style="background-image: url('{{project.projectImg}}');"
+	  						ng-click="setCurrentProjectAndType(project.projectId,project.projectType)">
+	  						<div class="picShadow"></div>
+	  					</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+
+  		<div ng-repeat="project in projects" ng-show="project.projectId===currentProjectId">
+  			<div class="fullView">
+  				<h1>{{project.projectName}}</h1>
+  				<p class="fullViewDesc">{{project.projectDesc}}</p>
+  				<div class="fullViewPic" style="background-image: url('{{project.projectImg}}');"></div>
+  				<div class="detailsContainer">
+  					<div class="fullViewDetails">{{project.projectDetails}}</div>
+  					<div class="fullViewLink"><a href="{{project.projectLink}}" target="_blank">See the project</a></div>
+  				</div>
+  				
+  			</div>
+  		</div>
+  		
+  		
+  	</script>
+
+  	<script type="text/ng-template" id="reviewsPage">
+  		<div class="bannerPic">
+  			<div class="picShadow">
+  				<div id="pageTitle" style="background-color: rgba(235,255,133,0.9);">
+  					<br></br>
+  					<br>
+  					<h1 style="font-size:44px; padding-left:15px; color: rgb(44,153,68);">Reviews</h1>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="picNav">
+  			<div ng-repeat="retype in reviewTypes">
+  				<div class="navRow">
+  					<div class="titleBox" style="background-color: rgb(44,153,68);">{{retype}}</div>
+  					<div ng-repeat="review in reviews" ng-show="review.reviewType===retype">
+  						<div class="itemBox" style="background-image: url('{{review.reviewImg}}');"
+  							ng-click="setCurrentReviewAndType(review.reviewId,review.reviewType)">
+  							<div class="picShadow"></div>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  		<div ng-repeat="review in reviews" ng-show="review.reviewId===currentReviewId">
+  			<div class="fullView">
+  				<h1>{{review.reviewName}}</h1>
+  				<p class="fullViewDesc">{{review.reviewTitle}}</p>
+  				<div class="fullViewPic" style="background-image: url('{{review.reviewImg}}');"></div>
+  				<div class="detailsContainer">
+  					<div class="fullViewDetails">{{review.reviewDetails}}</div>
+  					<div class="fullViewLink"><a href="{{review.reviewLink}}" target="_blank">See the review</a></div>
+  				</div>
+  			</div>
+  		</div>
+  		
+  	</script>
+
+  	<script type="text/ng-template" id="orderPage">
+  		<div class="bannerPic">
+  			<div id="picShadow">
+  				<div id="pageTitle" style="background-color: rgba(173,191,237,0.9);"></div>
+  			</div>
+  		</div>
+  		
+  	</script>
+
+  	<script type="text/ng-template" id="contactPage">
+  		<div class="bannerPic">
+  			<div id="picShadow">
+  				<div id="pageTitle" style="background-color: rgba(232,160,162,0.9);"></div>
+  			</div>
+  		</div>
+  		
+  	</script>
+
+ 
+
+</body>
+</html>

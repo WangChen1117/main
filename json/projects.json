@@ -1,0 +1,28 @@
+var projectFullViews = {
+	"projects":[
+		{"projectId":1,
+		 "projectName":"US Bad Drivers Visualization",
+		 "projectDesc":"Interactive Information Visualization",
+		 "projectType":"Visualization",
+		 "projectSkills":"D3,JavaScript",
+		 "projectImg":"img/projects/badDrivers.png",
+		 "projectDetails":"hahahahahahahahahahahahahahahahahahhahahahahahaha",
+		 "projectLink":"https://infx598i-s17.github.io/a8-visualization-JohnsonChen4110/"},
+		{"projectId":2,
+		 "projectName":"WeHike",
+		 "projectDesc":"An Android application for hiking lovers",
+		 "projectType":"Mobile Development",
+		 "projectSkills":"Java,Android Studio,Prototype",
+		 "projectImg":"img/projects/wehike.jpg",
+		 "projectDetails":"hahahahahahahahahahahahahahahahahahhahahahahahaha",
+		 "projectLink":""},
+		{"projectId":3,
+		 "projectName":"Strategic Analysis - Microsoft",
+		 "projectDesc":"Thorough strategic analysis on Microsoft",
+		 "projectType":"Visualization",
+		 "projectSkills":"PPT",
+		 "projectImg":"img/projects/microsoft.png",
+		 "projectDetails":"hahahahahahahahahahahahahahahahahahhahahahahahaha",
+		 "projectLink":""}
+	]
+}

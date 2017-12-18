@@ -1,0 +1,28 @@
+var reviewFullViews = {
+	"reviews":[
+		{"reviewId":1,
+		 "reviewName":"Avengers",
+		 "reviewTitle":"Classic Union of Marvel Heroes",
+		 "reviewType":"Movie",
+		 "reviewImg":"img/reviews/avengers.jpeg",
+		 "reviewDate":"2017-03-24",
+		 "reviewDetails":"hahahahahahahahahahahahahahahahahahhahahahahahaha",
+		 "reviewtLink":""},
+		{"reviewId":2,
+		 "reviewName":"请回答1988",
+		 "reviewTitle":"我的1988，听到了，请回答。",
+		 "reviewType":"TV Series",
+		 "reviewImg":"img/reviews/1988.png",
+		 "reviewDate":"2017-12-22",
+		 "reviewDetails":"hahahahahahahahahahahahahahahahahahhahahahahahaha",
+		 "reviewtLink":""},
+		{"reviewId":3,
+		 "reviewName":"Gustin Sneakers",
+		 "reviewTitle":"Quality and Future",
+		 "reviewType":"Product",
+		 "reviewImg":"img/reviews/Gustin.jpg",
+		 "reviewDate":"2016-12-11",
+		 "reviewDetails":"hahahahahahahahahahahahahahahahahahhahahahahahaha",
+		 "reviewtLink":""}
+	]
+}
