@@ -12,7 +12,7 @@ var reviewFullViews = {
 		 "reviewName":"请回答1988",
 		 "reviewTitle":"我的1988，听到了，请回答。",
 		 "reviewType":"TV Series",
-		 "reviewImg":"img/reviews/pleaseAnswer1988.png",
+		 "reviewImg":"img/reviews/pleaseAnswer.png",
 		 "reviewDate":"2017-12-22",
 		 "reviewDetails":"hahahahahahahahahahahahahahahahahahhahahahahahaha",
 		 "reviewtLink":""},
