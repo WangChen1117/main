@@ -356,6 +356,12 @@ body{
 	word-wrap: break-word;
 }
 
+.fullViewDate{
+	font-size: 18px;
+	padding: 3px;
+	text-align:right;
+}
+
 .fullViewLink{
 	width: 100%;
 	height: 25px;
