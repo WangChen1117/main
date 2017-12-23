@@ -23,6 +23,14 @@ var projectFullViews = {
 		 "projectSkills":"PPT",
 		 "projectImg":"img/projects/microsoft.png",
 		 "projectDetails":"hahahahahahahahahahahahahahahahahahhahahahahahaha",
-		 "projectLink":""}
+		 "projectLink":""},
+		 {"projectId":4,
+		 "projectName":"WebCrawler - Zhihu",
+		 "projectDesc":"Grab images from interested topics on Zhihu.com",
+		 "projectType":"Data Engineer",
+		 "projectSkills":"Python",
+		 "projectImg":"img/projects/webcrawler.png",
+		 "projectDetails":"I utilized webdriver from 'selenium' package to open a react-developed website and 'BeautifulSoup' to turn raw html text into workable BeautifulSoup Object so that I can find all image nodes. Then I used urllib.request to download all images and store them into a self-named folder.",
+		 "projectLink":"https://github.com/WangChen1117/crawler"}
 	]
 }

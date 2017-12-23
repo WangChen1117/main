@@ -14,7 +14,7 @@ var reviewFullViews = {
 		 "reviewType":"TV Series",
 		 "reviewImg":"img/reviews/pleaseAnswer.png",
 		 "reviewDate":"2017-12-22",
-		 "reviewDetails":"hahahahahahahahahahahahahahahahahahhahahahahahaha",
+		 "reviewDetails":"青春是一场美丽而羞涩的梦。1988里的友情和爱情每个人都有，1988就像一颗重磅炸弹，炸出了你心中最柔软的地方，让你哭，让你笑，让你边哭边笑。",
 		 "reviewLink":""},
 		{"reviewId":3,
 		 "reviewName":"Gustin Sneakers",

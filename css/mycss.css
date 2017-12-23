@@ -37,7 +37,7 @@ body{
     overflow: hidden;
     margin-top: 40px;
     margin-bottom: 0px;
-    transition: 0.4s;
+    transition: all 0.4s ease-in-out;
     position: relative;
     padding-top: 0px;
 
@@ -160,7 +160,7 @@ body{
     width: 485px;
     height: 351.5px;
     background-color: white;
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 /*.row:after {
@@ -186,6 +186,7 @@ body{
 .scrollable {
 	overflow: scroll;
 	height: 700px;
+	padding-bottom: 10px;
 }
 
 .card {
@@ -354,6 +355,7 @@ body{
 	font-size: 18px;
 	white-space: pre-wrap;
 	word-wrap: break-word;
+	margin-bottom: 10px
 }
 
 .fullViewDate{

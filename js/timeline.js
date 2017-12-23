@@ -77,13 +77,13 @@ function drawTimelineHeader(){
 		for (var i = types.length - 1; i >= 0; i--) {
 			svg_timeline.append("circle")
 				.attr("cx",25)
-				.attr("cy",425+i*20)
-				.attr("r",7)
+				.attr("cy",430+i*15)
+				.attr("r",5)
 				.attr("fill",color2(types[i]))
 
 			svg_timeline.append("text")
 				.attr("x",40)
-				.attr("y",430+i*20)
+				.attr("y",435+i*15)
 				.text(types[i])
 				.attr("fill",color2(types[i]))
 		}
@@ -99,8 +99,8 @@ function drawTimelineHeader(){
 			.attr("cx",15)
 			.attr("cy",function(d){return y_scale(getDate(d.eventDate))})
 			.attr("r",5)
-			.attr("fill",function(d){return color3(d.eventType)})
-			.attr("stroke","gold")
+			.attr("fill",function(d){return color2(d.eventType)})
+			// .attr("stroke","gold")
 			.on("mouseover", function(d){
 				d3.select(this).attr("r",10);
 				// $('#banner').css("background-image",'url('+d.eventPic+')');
