@@ -7,7 +7,7 @@ var reviewFullViews = {
 		 "reviewImg":"img/reviews/shanguang.png",
 		 "reviewDate":"2017-12-18",
 		 "reviewDetails":"这无疑是一部被埋没的好电影，题材不新颖，演员不出名，但却让我们重温了年少时对梦想的无畏执着，那时的我们勇敢，我们有一起勇敢的伙伴。我们都曾年少无知，都曾迷茫不知去向，都曾经历与朋友分道扬镳各奔东西，都曾再次拾起信念东山再起。以此片送给所有在路上的我们。",
-		 "reviewLink":"https://weibo.com/ttarticle/p/show?id=2309404186733255241488#_0"},
+		 "reviewLink":""},
 		{"reviewId":2,
 		 "reviewName":"请回答1988",
 		 "reviewTitle":"我的1988，听到了，请回答。",
